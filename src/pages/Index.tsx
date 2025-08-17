@@ -87,7 +87,7 @@ export default function Index() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <img 
-                src="https://cdn.poehali.dev/files/b8b674be-3283-4643-9d85-1cf25e934e99.jpg" 
+                src="https://cdn.poehali.dev/files/3bf37b6c-6556-4f32-a4a9-43b475032faf.png" 
                 alt="Pixel PC Cat Logo" 
                 className="w-8 h-8 object-contain"
               />
