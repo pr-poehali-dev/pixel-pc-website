@@ -89,7 +89,7 @@ export default function Index() {
               <img 
                 src="https://cdn.poehali.dev/files/3bf37b6c-6556-4f32-a4a9-43b475032faf.png" 
                 alt="Pixel PC Cat Logo" 
-                className="w-12 h-12 object-contain rounded-none"
+                className="w-[70px] h-[70px] object-contain"
               />
               <h1 className="text-3xl font-heading font-bold text-foreground">
                 PIXEL PC<span className="text-xs align-super">™</span>
