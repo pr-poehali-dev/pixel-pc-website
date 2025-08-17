@@ -86,7 +86,11 @@ export default function Index() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <Icon name="Monitor" size={32} className="text-primary" />
+              <img 
+                src="https://cdn.poehali.dev/files/b8b674be-3283-4643-9d85-1cf25e934e99.jpg" 
+                alt="Pixel PC Cat Logo" 
+                className="w-8 h-8 object-contain"
+              />
               <h1 className="text-3xl font-heading font-bold text-foreground">
                 PIXEL PC<span className="text-xs align-super">™</span>
               </h1>
