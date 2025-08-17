@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import Icon from '@/components/ui/icon'
+import useScrollAnimation from '@/hooks/useScrollAnimation'
 
 interface Computer {
   id: number
@@ -44,6 +45,11 @@ export default function Index() {
   const [computers, setComputers] = useState<Computer[]>(initialComputers)
   const [selectedCategory, setSelectedCategory] = useState<string>("Все")
   const [searchTerm, setSearchTerm] = useState("")
+
+  const heroAnimation = useScrollAnimation({ threshold: 0.2 })
+  const uploadAnimation = useScrollAnimation({ threshold: 0.3 })
+  const catalogAnimation = useScrollAnimation({ threshold: 0.2 })
+  const footerAnimation = useScrollAnimation({ threshold: 0.1 })
 
   const categories = ["Все", "Gaming Desktop", "Laptop", "Components"]
 
@@ -97,7 +103,7 @@ export default function Index() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-background via-background to-primary/5">
+      <section ref={heroAnimation.elementRef} className={`py-20 bg-gradient-to-br from-background via-background to-primary/5 transition-all duration-1000 ${heroAnimation.isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-5xl md:text-7xl font-heading font-bold text-foreground mb-6">
             Компьютеры<br />
@@ -121,7 +127,7 @@ export default function Index() {
       </section>
 
       {/* Upload Section */}
-      <section className="py-16 bg-muted/30">
+      <section ref={uploadAnimation.elementRef} className={`py-16 bg-muted/30 transition-all duration-1000 ${uploadAnimation.isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto px-4">
           <div className="max-w-md mx-auto text-center">
             <h3 className="text-2xl font-heading font-semibold mb-4">Загрузить свой компьютер</h3>
@@ -153,7 +159,7 @@ export default function Index() {
       </section>
 
       {/* Catalog Section */}
-      <section className="py-16">
+      <section ref={catalogAnimation.elementRef} className={`py-16 transition-all duration-1000 ${catalogAnimation.isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-4xl font-heading font-bold text-foreground mb-4">
@@ -191,8 +197,18 @@ export default function Index() {
 
           {/* Computer Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredComputers.map(computer => (
-              <Card key={computer.id} className="group hover:shadow-xl transition-all duration-300 border-border/40 hover:border-primary/20">
+            {filteredComputers.map((computer, index) => (
+              <Card 
+                key={computer.id} 
+                className={`group hover:shadow-xl transition-all duration-300 border-border/40 hover:border-primary/20 ${
+                  catalogAnimation.isVisible 
+                    ? 'animate-scale-in opacity-100' 
+                    : 'opacity-0 scale-95'
+                }`}
+                style={{
+                  animationDelay: catalogAnimation.isVisible ? `${index * 0.1}s` : '0s'
+                }}
+              >
                 <div className="aspect-square overflow-hidden rounded-t-lg bg-muted/20">
                   <img 
                     src={computer.image}
@@ -242,7 +258,7 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-16">
+      <footer ref={footerAnimation.elementRef} className={`bg-foreground text-background py-16 transition-all duration-1000 ${footerAnimation.isVisible ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
